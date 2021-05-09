@@ -1,0 +1,216 @@
+---
+title: "Project 2"
+author: "Nancy Gomez"
+date: "5/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+## Introduction: The data that I chose is called "Baseball" This data set includes a total of 322 observations and 25 variables. The variables are the following: name1 (player's first name), name2 (player's last name), atbat86 (official bat appearances), hits86 (number of hits), homer86 (number of homeruns), runs86 (number of runs), rbi86 (runs batted in), walks86 (number of walks), years (years in Major League), atbat (career times at bat), hits (career hits), homeruns (career homeruns), runs (career runs), rbi (career runs battled in), walks (career walks), league86 (player's league in 1986), div86 (player's division), team86 (player's team), posit86 (player's position), outs86 (number of putouts), assist86 (number of assists), error86 (number of assists), sal87 (salary USD), league87 (league in 1987), and team87 (team in 1987).  
+
+library(ggplot2)
+library(tidyverse)
+
+library(readr)
+library(readxl)
+Baseball <- read_excel("Baseball_Project 2.xlsx")
+
+library(AER)
+BAS <- data.frame(Baseball)
+man <- manova(cbind(runs86, walks86)~league86, data=BAS)
+summary(man)
+
+summary.aov(man)
+
+BAS%>%group_by(league86)%>%summarize(mean(runs86), mean(walks86))
+
+pairwise.t.test(BAS$runs86,
+BAS$league86, p.adjust.method = "none")
+
+pairwise.t.test(BAS$walks86,
+BAS$league86, p.adjust.method = "none")
+
+library(rstatix)
+gro <- BAS$league86
+BS <- BAS %>% select(runs86, walks86)
+sapply(split(BS, gro), mshapiro_test)
+
+
+## A MANOVA test, 2 ANOVA, and 2 t-tests were performed on the "Baseball" data chosen. From the MANOVA test, Pillai = 0.031665, F = 5.2157, and p = 0.005903, suggesting that there is a difference among the baseball statistics for at least one of the quantatitve (numerical) variables. For league86, the results indicated, F = 7.4051 and p = 0.00686. From the pairwise t-test comparisons, runs86 and walks86 were compared which resulted in a differentiation. The p-value for N league86 was <0.05 so therefore it is not significant and the main assumptions were broken.  
+
+library(vegan)
+BAS %>% group_by(league86) %>% summarize(means = mean(years)) %>% 
+  summarize(mean.difftime = diff(means))
+
+randte <- vector()
+for (i in 1:5000) {
+  new <- data.frame(years = sample(BAS$years), league86 = BAS$league86)
+  randte[i] <- mean(new[new$league86 == "N",]$years) - mean(new[new$league86 
+  == "A",]$years)
+}
+{hist(randte, main = "", ylab = ""); abline(v = c (-0.467, 0.467), col = "red")}
+
+
+mean(randte> 0.467 | randte < -0.467) 
+
+## HO: The years a player has actually played in the Major Leagues is the same for League A and League N. HA: The years a player has actually played in the Major Leagues is different from League A and League N. The calculated p-value is 0.4, therefore you reject the HO. 
+
+
+BAS$rbi86_c <- BAS$rbi86 - mean(BAS$rbi86)
+BAS$atbat86_c <- BAS$atbat86 - mean(BAS$atbat86)
+fit2 <- lm(atbat86_c ~ league86*rbi86_c, data = BAS)
+summary(fit2)
+
+coef(fit2)
+
+BAS%>% ggplot(aes(rbi86_c, atbat86_c)) + geom_point() + geom_smooth(method = 'lm', se= F)
+
+cor(BAS$rbi86_c, BAS$atbat86_c)
+
+residual <- fit2$residuals
+fitvalue <- fit2$fitted.values
+ggplot() + geom_point(aes(fitvalue, residual)) + geom_hline(yintercept = 0, color = 'red')
+
+
+ggplot() + geom_histogram(aes(residual))
+
+ggplot() + geom_qq(aes(sample = residual)) + geom_qq()
+
+coeftest(fit2)[,1:2]
+
+coeftest(fit2, vcov = vcovHC(fit2))[,1:2]
+
+fit3 <- lm(atbat86~rbi86, data = BAS)
+SST <- sum((BAS$atbat86-mean(BAS$atbat86))^2)
+SSR <- sum((fit3$fitted.values-mean(BAS$atbat86))^2)
+SSE <- sum(fit3$residuals^2)
+SSR/SST
+
+## Based on the data, the coefficient was positive, which indicated the rbi86 variable (x-axis) increase, then the atbat86 variable (y-axis) will also increase. In order to show the interaction between these two variables, a ggplot was created, showing homoskedasticity was not met. In addition, the standard errors for the robust differ from the non-robust and the model explains 67.33% variation outcome.  
+
+
+sample_dist <- replicate(5000, {
+  data1 <- data1 <- BAS[sample(nrow(BAS), replace = TRUE),]
+  fit3 <- lm(atbat86_c ~ league86*rbi86_c, data = data1)
+  coef(fit3)
+})
+sample_dist%>%t%>%as.data.frame%>%summarize_all(sd)
+
+
+## The original and the robust have the smallest SE values and the original SE and robust SE p-value show to be less than as well. 
+
+
+library(tidyverse)
+library(lmtest)
+library(plotROC)
+data3 <- BAS%>%mutate(y=ifelse(league86=="N",1,0))
+head(data3)
+
+fit4 <- glm(y~years, data = data3,,family = binomial(link = "logit"))
+coeftest(fit4)
+
+exp(coef(fit3))
+
+
+logi <- function(x){exp(x)/(1+exp(x))}
+
+table(truth=data3$league86, prediction=data3$years>1)%>%addmargins
+
+(164+136)/322
+
+136/147
+
+164/175
+
+164/300
+
+
+wid <- diff(data3$y)
+hei <- vector()
+for (i in 1:100) hei[i]<-data3$y[i] + data3$y[i+1]
+AUC <- sum(hei*wid/2)
+AUC%>%round(3)
+
+BAS$logit <- predict(fit4, type = "link")
+BAS%>%ggplot() + geom_density(aes(logit, color=league86, fill=league86), alpha = .5) + theme(legend.position = c(.3,.6)) + geom_vline(xintercept = 2) + xlab("logit (log-odd)") + geom_rug(aes(logit, color = league86))
+
+
+library(plotROC)
+ROC <- ggplot(data3) + geom_roc(aes(d=y, m=years), n.cuts = 0)
+ROC
+
+calc_auc(ROC)
+
+
+## From the data above, the estimated intercept is -0.030430. In order to calculate the accuracy, sensitivity, specificity, and precision, a table was created. The table showed accuracy to be 0.931677, specificity to be 0.9251701, sensitivty to be 0.9371429, and precision to be 0.5466667. The AUC is considered bad because it valued at -6.5. From the ROC, AUC was calculated to be 0.4669193.
+
+library(tidyverse)
+library(lmtest)
+library(pROC)
+library(glmnet)
+diag1 <-function(probs,truth){
+  tab<-table(factor(probs>.5,levels=c("FALSE","TRUE")),truth)
+  acc=sum(diag(tab))/sum(tab)
+  sens=tab[2,2]/colSums(tab)[2]
+  spec=tab[1,1]/colSums(tab)[1]
+  ppv=tab[2,2]/rowSums(tab)[2]
+  
+  if(is.numeric(truth)==FALSE & is.logical(truth)==FALSE) truth<-as.numeric(truth)-1 
+  ord<-order(probs, decreasing=TRUE)
+  probs <- probs[ord]; truth <- truth[ord]
+  
+  TPR=cumsum(truth)/max(1,sum(truth)) 
+  FPR=cumsum(!truth)/max(1,sum(!truth))
+  
+  dup<-c(probs[-1]>=probs[-length(probs)], FALSE)
+  TPR<-c(0,TPR[!dup],1); FPR<-c(0,FPR[!dup],1)
+  
+  n <- length(TPR)
+  auc<- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+  
+  data.frame(acc,sens,spec,ppv,auc)
+}
+
+k=10
+data10<-data3[sample(nrow(data3)),]
+folds<-cut(seq(1:nrow(data3)),breaks=k,labels=F)
+diag<-NULL 
+for(i in 1:k){
+  test1 <-data10[folds!=i,]   
+  test<-data10[folds==i,]
+  truth<-test$y
+  fit<-glm(y~years,data=data3,family="binomial")
+  probs<-predict(fit,newdata = test,type="response")
+  diag <-rbind(diag,diag1(probs,truth)) 
+}
+summarize_all(diag,mean)
+
+
+data10$binary<-ifelse(data10$league86=="N",1,0)
+y<-as.matrix(data10$binary)
+x<-model.matrix(binary~atbat86+hits86+homer86+runs86+rbi86+walks86+years+atbat+hits+homeruns+runs+rbi+walks+outs86+assist86+error86+sal87
+,data=data10)[,-1]
+head(x)
+
+x<-scale(x)
+head(x)
+
+cs <- cv.glmnet(x,y,family="binomial")
+last <-glmnet(x,y,family = "binomial", lambda = cs$lambda.1se)
+coef(last)
+
+## When summarizing above data, the sensitivity was 0, specificity was 1, accuracy was 0.5438447. The AUC was calculated to be 0.5418689, which is about 50%. Based on the both data, the AUC is not the same. 
+
+
+```
+

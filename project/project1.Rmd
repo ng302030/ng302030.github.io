@@ -1,0 +1,80 @@
+---
+title: "Project 1: Exploratory Data Analysis"
+author: "Nancy Gomez"
+date: "4/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(ggplot2)
+library(tidyverse)
+
+library(readr)
+library(readxl)
+StateDeaths <- read_excel("Death.xlsx")
+library(readxl)
+StateDoctor <- read_excel("Doctor.xlsx")
+library(readxl)
+StateDepression <- read_excel("Depression.xlsx")
+
+##Introduction: For this project, I am working with three different datasets. These three datasets were chosen in order to make sure that numerical and categorical variables would be accounted for. The first dataset that I chose, is based on the adults with major depressive episodes per state and is categorized under “Depression.” Based on this dataset, it shows the percentage of adults that have had major depressive episodes in the states, which is the first numerical variable in this project. This dataset was found and downloaded from the United States Nation DataUSA. The second numerical dataset that I chose focuses on the percentage of adults who have not seen a doctor in the past 12 months due to the high cost of health access in the states and categorized as “NoDoctor”. This dataset was also found and downloaded from the United States Nation DataUSA. The third dataset that I chose, is based on the number of deaths by suicide that is reported to the state and categorized as “Deaths”. State is the common categorical variable that is found in all three datasets. This third dataset was found and downloaded from the National Center for Health Statistics.  All three datasets were datasets that were downloaded as excel sheets and then imported into R Studio for project 1. I decided to focus on the number of deaths by suicide and the percentage of adults who have not seen a doctor in the past 12 months. I am interested in this topic because of the high cost of healthcare that is available to a large percentage of people and that leads to large numbers of death rates by suicide in the US. In order to begin this project, the datasets accumulated had to be downloaded into R Studio and they had to be tidy-ed. The datasets needed to be tidy-ed in order to organize the data nicely and so that I could work with the data better. 
+
+library(tidyr)
+library(dplyr)
+Join1 <- inner_join(StateDepression, StateDoctor, by = "State")
+print(Join1)
+
+State_Join <- inner_join(Join1, StateDeaths, by ="State")
+print(State_Join)
+SortDataProj <- State_Join %>% select(State, NoDoctor, Depression, Deaths)
+SortDataProj %>% arrange(State) %>% print(n=50)
+
+## In order to join all three datasets, the function inner_join was used. All three datasets were combined by state considering that it was the common variable among the three datasets and shows the percentage of deaths by suicide, percentage of adults who haven’t seen a doctor, and percentage of adults who have depressive episodes. After combining the datasets, one dataset was created in order to leave out unnecessary variables. Variables that were excluded were “URL,” “ID Year,” and “Slug State.” 
+
+SortDataProj %>% arrange(desc(Deaths))
+
+FilteredData <- SortDataProj %>% filter(Deaths >= 25.0) %>% summarize(mean(NoDoctor, na.rm = T))
+FilteredData1 <- SortDataProj %>% filter(Deaths <= 25.0) %>% summarize(mean(NoDoctor, na.rm = T))
+FunctionSum <- SortDataProj %>% group_by(Deaths >= 25.0) %>% summarize(mean(NoDoctor, na.rm = T))
+
+SortDataProj %>% summarize(max(Depression, na.rm = T))
+
+SortDataProj %>% summarize(max(State, Depression, na.rm = T))
+
+StatePop <- SortDataProj %>% group_by(Depression >= 6.49) %>% summarize(mean(Deaths, na.rm =T))
+
+StatePop1 <- SortDataProj %>% group_by(Depression >= 6.49) %>% summarize(mean(NoDoctor))
+
+sdStatePop <- SortDataProj %>% group_by(Depression >= 6.49) %>% summarize(sd(NoDoctor))
+
+SumStatePop <- inner_join(StatePop, StatePop1, by = "Depression >= 6.49")
+FinalLS <- inner_join(SumStatePop, sdStatePop, by = "Depression >= 6.49")
+
+SortDataProj%>% select_if(is.numeric) %>% cor(use = "pair")
+
+cordat <- SortDataProj %>% select_if(is.numeric) %>% cor(use = "pair")
+cortidy <- cordat %>% as.data.frame %>% rownames_to_column("var1") %>% pivot_longer(-1, names_to = "var2", values_to = "correlation")
+cortidy %>% ggplot(aes(var1, var2, fill=correlation)) + geom_tile() + scale_fill_gradient2(low = "blue", mid = "green", high = "pink") + geom_text(aes(label = round(correlation,2)), color = "black",size = 4) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + coord_fixed()
+
+ggplot(SortDataProj, aes(x=NoDoctor, y=Deaths)) + geom_point(size = 3, aes(color = Deaths)) + labs(x = "Percentage of Adults No Doctor", y = "Percentage of Deaths", title = "Death and Lack of Health Access Correlation") + labs(color = "Death and No Doctor Correlation") + scale_color_gradient(low = "yellow", high = "purple")
+
+library(ggplot2)
+ggplot(SortDataProj, aes(x = State)) + geom_bar(aes(y = Deaths, fill = NoDoctor, title=("Percentage of No Doctor Per State by Death Rate")), stat = "summary", fun=mean) + theme(axis.text.x = element_text(angle = 53, hjust = 1)) + xlab("US State") + ylab("Lack of Doctor Per State") + labs(fill = "No Doctor Per State") + scale_fill_gradient2(low = "white", high = "red")
+
+
+```
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

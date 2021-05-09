@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nancy Gomez" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <title>Project 2</title>
+    <meta name="generator" content="Hugo 0.83.1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../post/">BLOG</a></li>
+        
+        <li><a href="../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../project/project2/">Project 2</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         January 1, 0001 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<pre class="r"><code>## Introduction: The data that I chose is called &quot;Baseball&quot; This data set includes a total of 322 observations and 25 variables. The variables are the following: name1 (player&#39;s first name), name2 (player&#39;s last name), atbat86 (official bat appearances), hits86 (number of hits), homer86 (number of homeruns), runs86 (number of runs), rbi86 (runs batted in), walks86 (number of walks), years (years in Major League), atbat (career times at bat), hits (career hits), homeruns (career homeruns), runs (career runs), rbi (career runs battled in), walks (career walks), league86 (player&#39;s league in 1986), div86 (player&#39;s division), team86 (player&#39;s team), posit86 (player&#39;s position), outs86 (number of putouts), assist86 (number of assists), error86 (number of assists), sal87 (salary USD), league87 (league in 1987), and team87 (team in 1987).  
+
+library(ggplot2)
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.0
+## ✓ purrr   0.3.4</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(readr)
+library(readxl)
+Baseball &lt;- read_excel(&quot;Baseball_Project 2.xlsx&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre class="r"><code>library(AER)</code></pre>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre><code>## Loading required package: lmtest</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre class="r"><code>BAS &lt;- data.frame(Baseball)
+man &lt;- manova(cbind(runs86, walks86)~league86, data=BAS)
+summary(man)</code></pre>
+<pre><code>##            Df   Pillai approx F num Df den Df   Pr(&gt;F)   
+## league86    1 0.031665   5.2157      2    319 0.005903 **
+## Residuals 320                                            
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary.aov(man)</code></pre>
+<pre><code>##  Response runs86 :
+##              Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## league86      1   4917    4917  7.4051 0.00686 **
+## Residuals   320 212481     664                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##  Response walks86 :
+##              Df Sum Sq Mean Sq F value Pr(&gt;F)
+## league86      1    309  308.96  0.6591 0.4175
+## Residuals   320 150003  468.76</code></pre>
+<pre class="r"><code>BAS%&gt;%group_by(league86)%&gt;%summarize(mean(runs86), mean(walks86))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   league86 `mean(runs86)` `mean(walks86)`
+##   &lt;chr&gt;             &lt;dbl&gt;           &lt;dbl&gt;
+## 1 A                  54.5            39.6
+## 2 N                  46.6            37.7</code></pre>
+<pre class="r"><code>pairwise.t.test(BAS$runs86,
+BAS$league86, p.adjust.method = &quot;none&quot;)</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  BAS$runs86 and BAS$league86 
+## 
+##   A     
+## N 0.0069
+## 
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>pairwise.t.test(BAS$walks86,
+BAS$league86, p.adjust.method = &quot;none&quot;)</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  BAS$walks86 and BAS$league86 
+## 
+##   A   
+## N 0.42
+## 
+## P value adjustment method: none</code></pre>
+<pre class="r"><code>library(rstatix)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rstatix&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre class="r"><code>gro &lt;- BAS$league86
+BS &lt;- BAS %&gt;% select(runs86, walks86)
+sapply(split(BS, gro), mshapiro_test)</code></pre>
+<pre><code>##           A            N        
+## statistic 0.9640559    0.988169 
+## p.value   0.0001763907 0.2467866</code></pre>
+<pre class="r"><code>## A MANOVA test, 2 ANOVA, and 2 t-tests were performed on the &quot;Baseball&quot; data chosen. From the MANOVA test, Pillai = 0.031665, F = 5.2157, and p = 0.005903, suggesting that there is a difference among the baseball statistics for at least one of the quantatitve (numerical) variables. For league86, the results indicated, F = 7.4051 and p = 0.00686. From the pairwise t-test comparisons, runs86 and walks86 were compared which resulted in a differentiation. The p-value for N league86 was &lt;0.05 so therefore it is not significant and the main assumptions were broken.  
+
+library(vegan)</code></pre>
+<pre><code>## Loading required package: permute</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## This is vegan 2.5-7</code></pre>
+<pre class="r"><code>BAS %&gt;% group_by(league86) %&gt;% summarize(means = mean(years)) %&gt;% 
+  summarize(mean.difftime = diff(means))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   mean.difftime
+##           &lt;dbl&gt;
+## 1        -0.467</code></pre>
+<pre class="r"><code>randte &lt;- vector()
+for (i in 1:5000) {
+  new &lt;- data.frame(years = sample(BAS$years), league86 = BAS$league86)
+  randte[i] &lt;- mean(new[new$league86 == &quot;N&quot;,]$years) - mean(new[new$league86 
+  == &quot;A&quot;,]$years)
+}
+{hist(randte, main = &quot;&quot;, ylab = &quot;&quot;); abline(v = c (-0.467, 0.467), col = &quot;red&quot;)}</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-1.png" width="672" /></p>
+<pre class="r"><code>mean(randte&gt; 0.467 | randte &lt; -0.467) </code></pre>
+<pre><code>## [1] 0.3934</code></pre>
+<pre class="r"><code>## HO: The years a player has actually played in the Major Leagues is the same for League A and League N. HA: The years a player has actually played in the Major Leagues is different from League A and League N. The calculated p-value is 0.4, therefore you reject the HO. 
+
+
+BAS$rbi86_c &lt;- BAS$rbi86 - mean(BAS$rbi86)
+BAS$atbat86_c &lt;- BAS$atbat86 - mean(BAS$atbat86)
+fit2 &lt;- lm(atbat86_c ~ league86*rbi86_c, data = BAS)
+summary(fit2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = atbat86_c ~ league86 * rbi86_c, data = BAS)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -182.77  -59.91  -14.53   51.82  310.49 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        -2.1823     6.7032  -0.326    0.745    
+## league86N           5.9564     9.9620   0.598    0.550    
+## rbi86_c             4.7195     0.2401  19.657   &lt;2e-16 ***
+## league86N:rbi86_c   0.2834     0.3916   0.724    0.470    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 87.98 on 318 degrees of freedom
+## Multiple R-squared:  0.6741, Adjusted R-squared:  0.6711 
+## F-statistic: 219.3 on 3 and 318 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>coef(fit2)</code></pre>
+<pre><code>##       (Intercept)         league86N           rbi86_c league86N:rbi86_c 
+##         -2.182251          5.956408          4.719477          0.283404</code></pre>
+<pre class="r"><code>BAS%&gt;% ggplot(aes(rbi86_c, atbat86_c)) + geom_point() + geom_smooth(method = &#39;lm&#39;, se= F)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-2.png" width="672" /></p>
+<pre class="r"><code>cor(BAS$rbi86_c, BAS$atbat86_c)</code></pre>
+<pre><code>## [1] 0.8205392</code></pre>
+<pre class="r"><code>residual &lt;- fit2$residuals
+fitvalue &lt;- fit2$fitted.values
+ggplot() + geom_point(aes(fitvalue, residual)) + geom_hline(yintercept = 0, color = &#39;red&#39;)</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-3.png" width="672" /></p>
+<pre class="r"><code>ggplot() + geom_histogram(aes(residual))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-4.png" width="672" /></p>
+<pre class="r"><code>ggplot() + geom_qq(aes(sample = residual)) + geom_qq()</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-5.png" width="672" /></p>
+<pre class="r"><code>coeftest(fit2)[,1:2]</code></pre>
+<pre><code>##                    Estimate Std. Error
+## (Intercept)       -2.182251  6.7032324
+## league86N          5.956408  9.9619500
+## rbi86_c            4.719477  0.2400962
+## league86N:rbi86_c  0.283404  0.3916450</code></pre>
+<pre class="r"><code>coeftest(fit2, vcov = vcovHC(fit2))[,1:2]</code></pre>
+<pre><code>##                    Estimate Std. Error
+## (Intercept)       -2.182251  6.8313463
+## league86N          5.956408 10.0999825
+## rbi86_c            4.719477  0.2092115
+## league86N:rbi86_c  0.283404  0.3727798</code></pre>
+<pre class="r"><code>fit3 &lt;- lm(atbat86~rbi86, data = BAS)
+SST &lt;- sum((BAS$atbat86-mean(BAS$atbat86))^2)
+SSR &lt;- sum((fit3$fitted.values-mean(BAS$atbat86))^2)
+SSE &lt;- sum(fit3$residuals^2)
+SSR/SST</code></pre>
+<pre><code>## [1] 0.6732846</code></pre>
+<pre class="r"><code>## Based on the data, the coefficient was positive, which indicated the rbi86 variable (x-axis) increase, then the atbat86 variable (y-axis) will also increase. In order to show the interaction between these two variables, a ggplot was created, showing homoskedasticity was not met. In addition, the standard errors for the robust differ from the non-robust and the model explains 67.33% variation outcome.  
+
+
+sample_dist &lt;- replicate(5000, {
+  data1 &lt;- data1 &lt;- BAS[sample(nrow(BAS), replace = TRUE),]
+  fit3 &lt;- lm(atbat86_c ~ league86*rbi86_c, data = data1)
+  coef(fit3)
+})
+sample_dist%&gt;%t%&gt;%as.data.frame%&gt;%summarize_all(sd)</code></pre>
+<pre><code>##   (Intercept) league86N   rbi86_c league86N:rbi86_c
+## 1    6.803964  10.15217 0.2112817         0.3740635</code></pre>
+<pre class="r"><code>## The original and the robust have the smallest SE values and the original SE and robust SE p-value show to be less than as well. 
+
+
+library(tidyverse)
+library(lmtest)
+library(plotROC)
+data3 &lt;- BAS%&gt;%mutate(y=ifelse(league86==&quot;N&quot;,1,0))
+head(data3)</code></pre>
+<pre><code>##   ...1   name1    name2 atbat86 hits86 homer86 runs86 rbi86 walks86 years atbat
+## 1    1      Al   Newman     185     37       1     23     8      21     2   214
+## 2    2    Alan    Ashby     315     81       7     24    38      39    14  3449
+## 3    3    Alan Trammell     574    159      21    107    75      59    10  4631
+## 4    4    Alan  Wiggins     239     60       0     30    11      22     6  1941
+## 5    5    Alex  Trevino     202     53       4     31    26      27     9  1876
+## 6    6 Alfredo  Griffin     594    169       4     74    51      35    11  4408
+##   hits homeruns runs rbi walks league86 div86 team86 posit86 outs86 assist86
+## 1   42        1   30   9    24        N     E    Mon      2B     76      127
+## 2  835       69  321 414   375        N     W    Hou       C    632       43
+## 3 1300       90  702 504   488        A     E    Det      SS    238      445
+## 4  510        4  309 103   207        A     E    Bal      2B    121      151
+## 5  467       15  192 186   161        N     W     LA       C    304       45
+## 6 1133       19  501 336   194        A     W    Oak      SS    282      421
+##   error86              sal87 league87 team87   rbi86_c  atbat86_c y
+## 1       7                 70        A    Min -40.02795 -195.92857 1
+## 2      10                475        N    Hou -10.02795  -65.92857 1
+## 3      22 517.14300000000003        A    Det  26.97205  193.07143 0
+## 4       6                700        A    Bal -37.02795 -141.92857 0
+## 5      11              512.5        N     LA -22.02795 -178.92857 1
+## 6      25                750        A    Oak   2.97205  213.07143 0</code></pre>
+<pre class="r"><code>fit4 &lt;- glm(y~years, data = data3,,family = binomial(link = &quot;logit&quot;))
+coeftest(fit4)</code></pre>
+<pre><code>## 
+## z test of coefficients:
+## 
+##              Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) -0.030430   0.202990 -0.1499   0.8808
+## years       -0.019394   0.022892 -0.8472   0.3969</code></pre>
+<pre class="r"><code>exp(coef(fit3))</code></pre>
+<pre><code>##  (Intercept)        rbi86 
+## 1.251069e+65 1.227881e+02</code></pre>
+<pre class="r"><code>logi &lt;- function(x){exp(x)/(1+exp(x))}
+
+table(truth=data3$league86, prediction=data3$years&gt;1)%&gt;%addmargins</code></pre>
+<pre><code>##      prediction
+## truth FALSE TRUE Sum
+##   A      11  164 175
+##   N      11  136 147
+##   Sum    22  300 322</code></pre>
+<pre class="r"><code>(164+136)/322</code></pre>
+<pre><code>## [1] 0.931677</code></pre>
+<pre class="r"><code>136/147</code></pre>
+<pre><code>## [1] 0.9251701</code></pre>
+<pre class="r"><code>164/175</code></pre>
+<pre><code>## [1] 0.9371429</code></pre>
+<pre class="r"><code>164/300</code></pre>
+<pre><code>## [1] 0.5466667</code></pre>
+<pre class="r"><code>wid &lt;- diff(data3$y)
+hei &lt;- vector()
+for (i in 1:100) hei[i]&lt;-data3$y[i] + data3$y[i+1]
+AUC &lt;- sum(hei*wid/2)</code></pre>
+<pre><code>## Warning in hei * wid: longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre class="r"><code>AUC%&gt;%round(3)</code></pre>
+<pre><code>## [1] -6.5</code></pre>
+<pre class="r"><code>BAS$logit &lt;- predict(fit4, type = &quot;link&quot;)
+BAS%&gt;%ggplot() + geom_density(aes(logit, color=league86, fill=league86), alpha = .5) + theme(legend.position = c(.3,.6)) + geom_vline(xintercept = 2) + xlab(&quot;logit (log-odd)&quot;) + geom_rug(aes(logit, color = league86))</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-6.png" width="672" /></p>
+<pre class="r"><code>library(plotROC)
+ROC &lt;- ggplot(data3) + geom_roc(aes(d=y, m=years), n.cuts = 0)
+ROC</code></pre>
+<p><img src="../../project/project2_files/figure-html/cars-7.png" width="672" /></p>
+<pre class="r"><code>calc_auc(ROC)</code></pre>
+<pre><code>##   PANEL group       AUC
+## 1     1    -1 0.4669193</code></pre>
+<pre class="r"><code>## From the data above, the estimated intercept is -0.030430. In order to calculate the accuracy, sensitivity, specificity, and precision, a table was created. The table showed accuracy to be 0.931677, specificity to be 0.9251701, sensitivty to be 0.9371429, and precision to be 0.5466667. The AUC is considered bad because it valued at -6.5. From the ROC, AUC was calculated to be 0.4669193.
+
+library(tidyverse)
+library(lmtest)
+library(pROC)</code></pre>
+<pre><code>## Type &#39;citation(&quot;pROC&quot;)&#39; for a citation.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pROC&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotROC&#39;:
+## 
+##     ggroc</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     cov, smooth, var</code></pre>
+<pre class="r"><code>library(glmnet)</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## Loaded glmnet 4.0-2</code></pre>
+<pre class="r"><code>diag1 &lt;-function(probs,truth){
+  tab&lt;-table(factor(probs&gt;.5,levels=c(&quot;FALSE&quot;,&quot;TRUE&quot;)),truth)
+  acc=sum(diag(tab))/sum(tab)
+  sens=tab[2,2]/colSums(tab)[2]
+  spec=tab[1,1]/colSums(tab)[1]
+  ppv=tab[2,2]/rowSums(tab)[2]
+  
+  if(is.numeric(truth)==FALSE &amp; is.logical(truth)==FALSE) truth&lt;-as.numeric(truth)-1 
+  ord&lt;-order(probs, decreasing=TRUE)
+  probs &lt;- probs[ord]; truth &lt;- truth[ord]
+  
+  TPR=cumsum(truth)/max(1,sum(truth)) 
+  FPR=cumsum(!truth)/max(1,sum(!truth))
+  
+  dup&lt;-c(probs[-1]&gt;=probs[-length(probs)], FALSE)
+  TPR&lt;-c(0,TPR[!dup],1); FPR&lt;-c(0,FPR[!dup],1)
+  
+  n &lt;- length(TPR)
+  auc&lt;- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+  
+  data.frame(acc,sens,spec,ppv,auc)
+}
+
+k=10
+data10&lt;-data3[sample(nrow(data3)),]
+folds&lt;-cut(seq(1:nrow(data3)),breaks=k,labels=F)
+diag&lt;-NULL 
+for(i in 1:k){
+  test1 &lt;-data10[folds!=i,]   
+  test&lt;-data10[folds==i,]
+  truth&lt;-test$y
+  fit&lt;-glm(y~years,data=data3,family=&quot;binomial&quot;)
+  probs&lt;-predict(fit,newdata = test,type=&quot;response&quot;)
+  diag &lt;-rbind(diag,diag1(probs,truth)) 
+}
+summarize_all(diag,mean)</code></pre>
+<pre><code>##         acc sens spec ppv       auc
+## 1 0.5440341    0    1 NaN 0.5320778</code></pre>
+<pre class="r"><code>data10$binary&lt;-ifelse(data10$league86==&quot;N&quot;,1,0)
+y&lt;-as.matrix(data10$binary)
+x&lt;-model.matrix(binary~atbat86+hits86+homer86+runs86+rbi86+walks86+years+atbat+hits+homeruns+runs+rbi+walks+outs86+assist86+error86+sal87
+,data=data10)[,-1]
+head(x)</code></pre>
+<pre><code>##     atbat86 hits86 homer86 runs86 rbi86 walks86 years atbat hits homeruns runs
+## 123     408     94       4     42    36      66     9  3573  866       59  429
+## 74      155     41      12     21    29      22    16  5409 1338      181  746
+## 135     220     54      10     30    39      31     5  1185  299       40  145
+## 232     236     56       6     41    19      21     5  1257  329       24  166
+## 26      200     57       6     23    14      14     9  2516  684       46  371
+## 164     404     92      11     54    49      18     6  1354  325       30  188
+##     rbi walks outs86 assist86 error86 sal871000 sal871008.333
+## 123 365   410    282      487      19         0             0
+## 74  805   875    165        9       1         0             0
+## 135 154   128     50      136      20         0             0
+## 232 125   105    172        1       4         0             0
+## 26  230   195     69        1       1         0             0
+## 164 135    63    222        5       5         0             0
+##     sal871041.6669999999999 sal871043.3330000000001 sal87105 sal871050 sal87110
+## 123                       0                       0        0         0        0
+## 74                        0                       0        0         0        0
+## 135                       0                       0        0         0        0
+## 232                       0                       0        0         0        0
+## 26                        0                       0        0         0        0
+## 164                       0                       0        0         0        0
+##     sal871100 sal87115 sal871150 sal871175 sal871183.3330000000001 sal87120
+## 123         0        0         0         0                       0        0
+## 74          0        0         0         0                       0        0
+## 135         0        0         0         0                       0        0
+## 232         0        0         0         0                       0        0
+## 26          0        0         0         0                       0        0
+## 164         0        0         0         0                       0        0
+##     sal871200 sal871220 sal871237.5 sal87125 sal871260 sal87130 sal871300
+## 123         0         0           0        0         0        0         0
+## 74          0         0           0        0         0        0         0
+## 135         0         0           0        0         0        0         0
+## 232         0         0           0        0         0        0         0
+## 26          0         0           0        0         0        0         0
+## 164         0         0           0        0         0        0         0
+##     sal871310 sal87135 sal871350 sal87137 sal87140 sal87145 sal871450 sal87150
+## 123         0        0         0        0        0        0         0        0
+## 74          0        0         0        0        0        0         0        0
+## 135         0        0         0        0        0        0         0        0
+## 232         0        0         0        0        0        0         0        0
+## 26          0        0         0        0        0        0         0        0
+## 164         0        0         0        0        0        0         0        0
+##     sal871500 sal87155 sal87160 sal871600 sal87165 sal871670 sal87172 sal87175
+## 123         0        0        0         0        0         0        0        0
+## 74          0        0        0         0        0         0        0        0
+## 135         0        0        0         0        0         0        0        0
+## 232         0        0        0         0        0         0        0        0
+## 26          0        0        0         0        0         0        0        0
+## 164         0        0        0         0        0         0        0        0
+##     sal87180 sal871800 sal87185 sal871861.46 sal87190 sal871900 sal87191
+## 123        0         0        0            0        0         0        0
+## 74         0         0        0            0        0         0        0
+## 135        0         0        0            0        0         0        0
+## 232        0         0        0            0        1         0        0
+## 26         0         0        0            0        0         0        0
+## 164        0         0        0            0        0         0        0
+##     sal871925.5709999999999 sal871940 sal87195 sal871975 sal87200 sal87202.5
+## 123                       0         0        0         0        0          0
+## 74                        0         0        0         0        0          0
+## 135                       0         0        0         0        0          0
+## 232                       0         0        0         0        0          0
+## 26                        0         0        0         0        0          0
+## 164                       0         0        0         0        0          0
+##     sal87210 sal872127.3330000000001 sal87215 sal87225 sal87230 sal87235
+## 123        0                       0        0        0        0        0
+## 74         0                       0        0        0        0        0
+## 135        0                       0        0        0        0        0
+## 232        0                       0        0        0        0        0
+## 26         0                       0        0        0        0        0
+## 164        0                       0        0        0        0        0
+##     sal87240 sal872412.5 sal87245 sal872460 sal87247.5 sal87250 sal87260
+## 123        0           0        0         0          0        0        0
+## 74         0           0        0         0          0        0        1
+## 135        0           0        0         0          0        0        0
+## 232        0           0        0         0          0        0        0
+## 26         0           0        0         0          0        0        0
+## 164        0           0        0         0          0        0        0
+##     sal87265 sal87275 sal87277.5 sal87286.66699999999997 sal87297.5 sal87300
+## 123        0        0          0                       0          0        0
+## 74         0        0          0                       0          0        0
+## 135        0        0          0                       0          1        0
+## 232        0        0          0                       0          0        0
+## 26         0        0          0                       0          0        0
+## 164        0        0          0                       0          0        1
+##     sal87305 sal87320 sal87325 sal87326.66699999999997 sal87340
+## 123        0        0        0                       0        0
+## 74         0        0        0                       0        0
+## 135        0        0        0                       0        0
+## 232        0        0        0                       0        0
+## 26         0        0        0                       0        0
+## 164        0        0        0                       0        0
+##     sal87341.66699999999997 sal87350 sal87362.5 sal87365 sal87375 sal87385
+## 123                       0        0          0        0        0        0
+## 74                        0        0          0        0        0        0
+## 135                       0        0          0        0        0        0
+## 232                       0        0          0        0        0        0
+## 26                        0        0          0        0        0        0
+## 164                       0        0          0        0        0        0
+##     sal87400 sal87415 sal87416.66699999999997 sal87420 sal87425 sal87430
+## 123        0        0                       0        0        0        0
+## 74         0        0                       0        0        0        0
+## 135        0        0                       0        0        0        0
+## 232        0        0                       0        0        0        0
+## 26         0        0                       0        0        0        0
+## 164        0        0                       0        0        0        0
+##     sal87431.5 sal87450 sal87475 sal87480 sal87487.5 sal87490 sal87500
+## 123          0        0        0        0          0        0        0
+## 74           0        0        0        0          0        0        0
+## 135          0        0        0        0          0        0        0
+## 232          0        0        0        0          0        0        0
+## 26           0        0        0        0          0        0        0
+## 164          0        0        0        0          0        0        0
+##     sal87512.5 sal87517.14300000000003 sal87525 sal87530 sal87535 sal87550
+## 123          0                       0        0        0        1        0
+## 74           0                       0        0        0        0        0
+## 135          0                       0        0        0        0        0
+## 232          0                       0        0        0        0        0
+## 26           0                       0        0        0        0        0
+## 164          0                       0        0        0        0        0
+##     sal87560 sal87575 sal87580 sal87587.5 sal87595 sal87600 sal87612.5 sal87625
+## 123        0        0        0          0        0        0          0        0
+## 74         0        0        0          0        0        0          0        0
+## 135        0        0        0          0        0        0          0        0
+## 232        0        0        0          0        0        0          0        0
+## 26         0        0        0          0        0        0          0        0
+## 164        0        0        0          0        0        0          0        0
+##     sal87630 sal87640 sal87650 sal87657 sal87662.5 sal8767.5 sal87670 sal87675
+## 123        0        0        0        0          0         0        0        0
+## 74         0        0        0        0          0         0        0        0
+## 135        0        0        0        0          0         0        0        0
+## 232        0        0        0        0          0         0        0        0
+## 26         0        0        0        0          0         0        0        0
+## 164        0        0        0        0          0         0        0        0
+##     sal8768 sal8770 sal87700 sal87708.33299999999997 sal87725
+## 123       0       0        0                       0        0
+## 74        0       0        0                       0        0
+## 135       0       0        0                       0        0
+## 232       0       0        0                       0        0
+## 26        0       0        0                       0        0
+## 164       0       0        0                       0        0
+##     sal87733.33299999999997 sal87737.5 sal87740 sal8775 sal87750 sal87765
+## 123                       0          0        0       0        0        0
+## 74                        0          0        0       0        0        0
+## 135                       0          0        0       0        0        0
+## 232                       0          0        0       0        0        0
+## 26                        0          0        0       0        0        0
+## 164                       0          0        0       0        0        0
+##     sal87773.33299999999997 sal87775 sal87776.66700000000003 sal87780
+## 123                       0        0                       0        0
+## 74                        0        0                       0        0
+## 135                       0        0                       0        0
+## 232                       0        0                       0        0
+## 26                        0        0                       0        0
+## 164                       0        0                       0        0
+##     sal87787.5 sal8780 sal87800 sal87815 sal87825 sal87850 sal8786.5 sal8787.5
+## 123          0       0        0        0        0        0         0         0
+## 74           0       0        0        0        0        0         0         0
+## 135          0       0        0        0        0        0         0         0
+## 232          0       0        0        0        0        0         0         0
+## 26           0       0        0        0        0        0         0         0
+## 164          0       0        0        0        0        0         0         0
+##     sal87875 sal8790 sal87900 sal8791.5 sal87920 sal87925
+## 123        0       0        0         0        0        0
+## 74         0       0        0         0        0        0
+## 135        0       0        0         0        0        0
+## 232        0       0        0         0        0        0
+## 26         0       0        0         0        0        0
+## 164        0       0        0         0        0        0
+##     sal87933.33299999999997 sal87940 sal8795 sal87950 sal87960 sal8797.5
+## 123                       0        0       0        0        0         0
+## 74                        0        0       0        0        0         0
+## 135                       0        0       0        0        0         0
+## 232                       0        0       0        0        0         0
+## 26                        0        0       0        0        0         0
+## 164                       0        0       0        0        0         0
+##     sal87NA
+## 123       0
+## 74        0
+## 135       0
+## 232       0
+## 26        1
+## 164       0</code></pre>
+<pre class="r"><code>x&lt;-scale(x)
+head(x)</code></pre>
+<pre><code>##        atbat86     hits86     homer86     runs86       rbi86    walks86
+## 123  0.1764703 -0.1512191 -0.77737481 -0.3423726 -0.45966288  1.2596401
+## 74  -1.4727590 -1.2921145  0.14121120 -1.1493171 -0.72717648 -0.7736949
+## 135 -1.0490440 -1.0122722 -0.08843530 -0.8034838 -0.34501420 -0.3577854
+## 232 -0.9447449 -0.9692196 -0.54772831 -0.3807986 -1.10933875 -0.8199070
+## 26  -1.1794178 -0.9476932 -0.54772831 -1.0724652 -1.30041989 -1.1433921
+## 164  0.1503956 -0.1942718  0.02638795  0.1187385  0.03714807 -0.9585435
+##          years       atbat        hits   homeruns        runs        rbi
+## 123  0.3158492  0.39769144  0.22679111 -0.1216085  0.21012790  0.1046817
+## 74   1.7368553  1.18763867  0.94798246  1.2926209  1.15892891  1.4251321
+## 135 -0.4961543 -0.62975627 -0.63955529 -0.3418573 -0.63990202 -0.5285343
+## 232 -0.4961543 -0.59877795 -0.59371685 -0.5273300 -0.57704769 -0.6155640
+## 26   0.3158492 -0.05708755 -0.05129539 -0.2723050  0.03653024 -0.3004565
+## 164 -0.2931534 -0.55704327 -0.59982864 -0.4577778 -0.51120031 -0.5855538
+##          walks      outs86   assist86    error86   sal871000 sal871008.333
+## 123  0.5607801 -0.02471597  2.7772993  1.7209500 -0.09682553   -0.05572782
+## 74   2.3019744 -0.44152423 -0.7154516 -1.1055238 -0.09682553   -0.05572782
+## 135 -0.4951699 -0.85120756  0.2125387  1.8779763 -0.09682553   -0.05572782
+## 232 -0.5812935 -0.41658698 -0.7739077 -0.6344449 -0.09682553   -0.05572782
+## 26  -0.2442882 -0.78352075 -0.7739077 -1.1055238 -0.09682553   -0.05572782
+## 164 -0.7385627 -0.23846380 -0.7446797 -0.4774185 -0.09682553   -0.05572782
+##     sal871041.6669999999999 sal871043.3330000000001    sal87105   sal871050
+## 123             -0.05572782             -0.05572782 -0.07893409 -0.05572782
+## 74              -0.05572782             -0.05572782 -0.07893409 -0.05572782
+## 135             -0.05572782             -0.05572782 -0.07893409 -0.05572782
+## 232             -0.05572782             -0.05572782 -0.07893409 -0.05572782
+## 26              -0.05572782             -0.05572782 -0.07893409 -0.05572782
+## 164             -0.05572782             -0.05572782 -0.07893409 -0.05572782
+##       sal87110   sal871100    sal87115   sal871150   sal871175
+## 123 -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 74  -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 135 -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 232 -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 26  -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 164 -0.1119801 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+##     sal871183.3330000000001    sal87120   sal871200   sal871220 sal871237.5
+## 123             -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 74              -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 135             -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 232             -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 26              -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 164             -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+##        sal87125   sal871260    sal87130   sal871300   sal871310    sal87135
+## 123 -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+## 74  -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+## 135 -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+## 232 -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+## 26  -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+## 164 -0.05572782 -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.07893409
+##       sal871350    sal87137    sal87140    sal87145   sal871450    sal87150
+## 123 -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+## 74  -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+## 135 -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+## 232 -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+## 26  -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+## 164 -0.05572782 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409
+##       sal871500    sal87155    sal87160   sal871600    sal87165   sal871670
+## 123 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+## 74  -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+## 135 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+## 232 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+## 26  -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+## 164 -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.07893409 -0.05572782
+##        sal87172   sal87175    sal87180   sal871800    sal87185 sal871861.46
+## 123 -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+## 74  -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+## 135 -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+## 232 -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+## 26  -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+## 164 -0.05572782 -0.1119801 -0.05572782 -0.05572782 -0.05572782  -0.05572782
+##        sal87190   sal871900    sal87191 sal871925.5709999999999   sal871940
+## 123 -0.07893409 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 74  -0.07893409 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 135 -0.07893409 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 232 12.62945389 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 26  -0.07893409 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 164 -0.07893409 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+##        sal87195   sal871975   sal87200  sal87202.5    sal87210
+## 123 -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+## 74  -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+## 135 -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+## 232 -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+## 26  -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+## 164 -0.05572782 -0.05572782 -0.1119801 -0.05572782 -0.07893409
+##     sal872127.3330000000001    sal87215    sal87225    sal87230    sal87235
+## 123             -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+## 74              -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+## 135             -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+## 232             -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+## 26              -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+## 164             -0.05572782 -0.09682553 -0.07893409 -0.05572782 -0.05572782
+##        sal87240 sal872412.5    sal87245   sal872460  sal87247.5   sal87250
+## 123 -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+## 74  -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+## 135 -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+## 232 -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+## 26  -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+## 164 -0.07893409 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.1375804
+##        sal87260    sal87265    sal87275  sal87277.5 sal87286.66699999999997
+## 123 -0.05572782 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+## 74  17.88863062 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+## 135 -0.05572782 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+## 232 -0.05572782 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+## 26  -0.05572782 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+## 164 -0.05572782 -0.05572782 -0.09682553 -0.07893409             -0.05572782
+##      sal87297.5   sal87300    sal87305    sal87320    sal87325
+## 123 -0.05572782 -0.1253949 -0.05572782 -0.05572782 -0.07893409
+## 74  -0.05572782 -0.1253949 -0.05572782 -0.05572782 -0.07893409
+## 135 17.88863062 -0.1253949 -0.05572782 -0.05572782 -0.07893409
+## 232 -0.05572782 -0.1253949 -0.05572782 -0.05572782 -0.07893409
+## 26  -0.05572782 -0.1253949 -0.05572782 -0.05572782 -0.07893409
+## 164 -0.05572782  7.9500381 -0.05572782 -0.05572782 -0.07893409
+##     sal87326.66699999999997    sal87340 sal87341.66699999999997    sal87350
+## 123             -0.05572782 -0.05572782             -0.07893409 -0.09682553
+## 74              -0.05572782 -0.05572782             -0.07893409 -0.09682553
+## 135             -0.05572782 -0.05572782             -0.07893409 -0.09682553
+## 232             -0.05572782 -0.05572782             -0.07893409 -0.09682553
+## 26              -0.05572782 -0.05572782             -0.07893409 -0.09682553
+## 164             -0.05572782 -0.05572782             -0.07893409 -0.09682553
+##      sal87362.5    sal87365    sal87375    sal87385   sal87400    sal87415
+## 123 -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+## 74  -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+## 135 -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+## 232 -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+## 26  -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+## 164 -0.05572782 -0.07893409 -0.05572782 -0.07893409 -0.1119801 -0.05572782
+##     sal87416.66699999999997    sal87420    sal87425    sal87430  sal87431.5
+## 123             -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+## 74              -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+## 135             -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+## 232             -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+## 26              -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+## 164             -0.05572782 -0.05572782 -0.09682553 -0.05572782 -0.05572782
+##       sal87450    sal87475    sal87480  sal87487.5    sal87490   sal87500
+## 123 -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+## 74  -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+## 135 -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+## 232 -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+## 26  -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+## 164 -0.1253949 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.1119801
+##      sal87512.5 sal87517.14300000000003    sal87525    sal87530    sal87535
+## 123 -0.05572782             -0.05572782 -0.07893409 -0.05572782 12.62945389
+## 74  -0.05572782             -0.05572782 -0.07893409 -0.05572782 -0.07893409
+## 135 -0.05572782             -0.05572782 -0.07893409 -0.05572782 -0.07893409
+## 232 -0.05572782             -0.05572782 -0.07893409 -0.05572782 -0.07893409
+## 26  -0.05572782             -0.05572782 -0.07893409 -0.05572782 -0.07893409
+## 164 -0.05572782             -0.05572782 -0.07893409 -0.05572782 -0.07893409
+##        sal87550    sal87560    sal87575    sal87580  sal87587.5    sal87595
+## 123 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 74  -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 135 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 232 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 26  -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 164 -0.09682553 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+##       sal87600  sal87612.5    sal87625    sal87630    sal87640    sal87650
+## 123 -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 74  -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 135 -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 232 -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 26  -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+## 164 -0.1119801 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.05572782
+##        sal87657  sal87662.5   sal8767.5    sal87670    sal87675     sal8768
+## 123 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 74  -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 135 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 232 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 26  -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+## 164 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782 -0.05572782
+##        sal8770   sal87700 sal87708.33299999999997    sal87725
+## 123 -0.1253949 -0.1253949             -0.05572782 -0.05572782
+## 74  -0.1253949 -0.1253949             -0.05572782 -0.05572782
+## 135 -0.1253949 -0.1253949             -0.05572782 -0.05572782
+## 232 -0.1253949 -0.1253949             -0.05572782 -0.05572782
+## 26  -0.1253949 -0.1253949             -0.05572782 -0.05572782
+## 164 -0.1253949 -0.1253949             -0.05572782 -0.05572782
+##     sal87733.33299999999997  sal87737.5    sal87740    sal8775   sal87750
+## 123             -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+## 74              -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+## 135             -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+## 232             -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+## 26              -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+## 164             -0.05572782 -0.07893409 -0.09682553 -0.1253949 -0.1593693
+##        sal87765 sal87773.33299999999997    sal87775 sal87776.66700000000003
+## 123 -0.05572782             -0.05572782 -0.07893409             -0.05572782
+## 74  -0.05572782             -0.05572782 -0.07893409             -0.05572782
+## 135 -0.05572782             -0.05572782 -0.07893409             -0.05572782
+## 232 -0.05572782             -0.05572782 -0.07893409             -0.05572782
+## 26  -0.05572782             -0.05572782 -0.07893409             -0.05572782
+## 164 -0.05572782             -0.05572782 -0.07893409             -0.05572782
+##        sal87780  sal87787.5     sal8780    sal87800    sal87815    sal87825
+## 123 -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+## 74  -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+## 135 -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+## 232 -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+## 26  -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+## 164 -0.05572782 -0.05572782 -0.05572782 -0.07893409 -0.05572782 -0.05572782
+##       sal87850   sal8786.5   sal8787.5   sal87875    sal8790    sal87900
+## 123 -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+## 74  -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+## 135 -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+## 232 -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+## 26  -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+## 164 -0.1119801 -0.05572782 -0.05572782 -0.1119801 -0.1375804 -0.09682553
+##       sal8791.5    sal87920    sal87925 sal87933.33299999999997    sal87940
+## 123 -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 74  -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 135 -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 232 -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 26  -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+## 164 -0.05572782 -0.05572782 -0.05572782             -0.05572782 -0.05572782
+##         sal8795    sal87950    sal87960   sal8797.5    sal87NA
+## 123 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.4729037
+## 74  -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.4729037
+## 135 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.4729037
+## 232 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.4729037
+## 26  -0.05572782 -0.07893409 -0.05572782 -0.05572782  2.1080284
+## 164 -0.05572782 -0.07893409 -0.05572782 -0.05572782 -0.4729037</code></pre>
+<pre class="r"><code>cs &lt;- cv.glmnet(x,y,family=&quot;binomial&quot;)
+last &lt;-glmnet(x,y,family = &quot;binomial&quot;, lambda = cs$lambda.1se)
+coef(last)</code></pre>
+<pre><code>## 167 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                                 s0
+## (Intercept)             -0.1743534
+## atbat86                  0.0000000
+## hits86                   .        
+## homer86                  .        
+## runs86                   .        
+## rbi86                    .        
+## walks86                  .        
+## years                    .        
+## atbat                    .        
+## hits                     .        
+## homeruns                 .        
+## runs                     .        
+## rbi                      .        
+## walks                    .        
+## outs86                   .        
+## assist86                 .        
+## error86                  .        
+## sal871000                .        
+## sal871008.333            .        
+## sal871041.6669999999999  .        
+## sal871043.3330000000001  .        
+## sal87105                 .        
+## sal871050                .        
+## sal87110                 .        
+## sal871100                .        
+## sal87115                 .        
+## sal871150                .        
+## sal871175                .        
+## sal871183.3330000000001  .        
+## sal87120                 .        
+## sal871200                .        
+## sal871220                .        
+## sal871237.5              .        
+## sal87125                 .        
+## sal871260                .        
+## sal87130                 .        
+## sal871300                .        
+## sal871310                .        
+## sal87135                 .        
+## sal871350                .        
+## sal87137                 .        
+## sal87140                 .        
+## sal87145                 .        
+## sal871450                .        
+## sal87150                 .        
+## sal871500                .        
+## sal87155                 .        
+## sal87160                 .        
+## sal871600                .        
+## sal87165                 .        
+## sal871670                .        
+## sal87172                 .        
+## sal87175                 .        
+## sal87180                 .        
+## sal871800                .        
+## sal87185                 .        
+## sal871861.46             .        
+## sal87190                 .        
+## sal871900                .        
+## sal87191                 .        
+## sal871925.5709999999999  .        
+## sal871940                .        
+## sal87195                 .        
+## sal871975                .        
+## sal87200                 .        
+## sal87202.5               .        
+## sal87210                 .        
+## sal872127.3330000000001  .        
+## sal87215                 .        
+## sal87225                 .        
+## sal87230                 .        
+## sal87235                 .        
+## sal87240                 .        
+## sal872412.5              .        
+## sal87245                 .        
+## sal872460                .        
+## sal87247.5               .        
+## sal87250                 .        
+## sal87260                 .        
+## sal87265                 .        
+## sal87275                 .        
+## sal87277.5               .        
+## sal87286.66699999999997  .        
+## sal87297.5               .        
+## sal87300                 .        
+## sal87305                 .        
+## sal87320                 .        
+## sal87325                 .        
+## sal87326.66699999999997  .        
+## sal87340                 .        
+## sal87341.66699999999997  .        
+## sal87350                 .        
+## sal87362.5               .        
+## sal87365                 .        
+## sal87375                 .        
+## sal87385                 .        
+## sal87400                 .        
+## sal87415                 .        
+## sal87416.66699999999997  .        
+## sal87420                 .        
+## sal87425                 .        
+## sal87430                 .        
+## sal87431.5               .        
+## sal87450                 .        
+## sal87475                 .        
+## sal87480                 .        
+## sal87487.5               .        
+## sal87490                 .        
+## sal87500                 .        
+## sal87512.5               .        
+## sal87517.14300000000003  .        
+## sal87525                 .        
+## sal87530                 .        
+## sal87535                 .        
+## sal87550                 .        
+## sal87560                 .        
+## sal87575                 .        
+## sal87580                 .        
+## sal87587.5               .        
+## sal87595                 .        
+## sal87600                 .        
+## sal87612.5               .        
+## sal87625                 .        
+## sal87630                 .        
+## sal87640                 .        
+## sal87650                 .        
+## sal87657                 .        
+## sal87662.5               .        
+## sal8767.5                .        
+## sal87670                 .        
+## sal87675                 .        
+## sal8768                  .        
+## sal8770                  .        
+## sal87700                 .        
+## sal87708.33299999999997  .        
+## sal87725                 .        
+## sal87733.33299999999997  .        
+## sal87737.5               .        
+## sal87740                 .        
+## sal8775                  .        
+## sal87750                 .        
+## sal87765                 .        
+## sal87773.33299999999997  .        
+## sal87775                 .        
+## sal87776.66700000000003  .        
+## sal87780                 .        
+## sal87787.5               .        
+## sal8780                  .        
+## sal87800                 .        
+## sal87815                 .        
+## sal87825                 .        
+## sal87850                 .        
+## sal8786.5                .        
+## sal8787.5                .        
+## sal87875                 .        
+## sal8790                  .        
+## sal87900                 .        
+## sal8791.5                .        
+## sal87920                 .        
+## sal87925                 .        
+## sal87933.33299999999997  .        
+## sal87940                 .        
+## sal8795                  .        
+## sal87950                 .        
+## sal87960                 .        
+## sal8797.5                .        
+## sal87NA                  .</code></pre>
+<pre class="r"><code>## When summarizing above data, the sensitivity was 0, specificity was 1, accuracy was 0.5438447. The AUC was calculated to be 0.5418689, which is about 50%. Based on the both data, the AUC is not the same. </code></pre>
+</div>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../js/docs.min.js"></script>
+<script src="../../js/main.js"></script>
+
+<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>
